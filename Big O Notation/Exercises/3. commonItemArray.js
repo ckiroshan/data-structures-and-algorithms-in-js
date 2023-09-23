@@ -40,3 +40,30 @@ function containsCommonItem(array1, array2) {
 console.log(containsCommonItem(array1, array2));
 // Big O(a*b) - If the array had a size limit
 // Big O(n^2) - If the array can have no limit
+
+// Approach #2
+
+// Loop through array1 & create a object where properties = items in array
+function containsCommonItem2(array1, array2) {
+  let map = {};
+  for (let i = 0; i < array1.length; i++) {
+    if (!map[array1[i]]) {
+      // If Map obj doesn't have "i"
+      const item = array1[i];
+      // item is given array1's "i" value as property.
+      map[item] = true;
+      // item property is given a value of true. (As all object properties have values)
+    }
+  }
+  console.log(map); // Outputs: {a: true, b: true, c: true, x: true}
+
+  // Loop array2 & check if item in it exists on map object.
+  for (let j = 0; j < array2.length; j++) {
+    if (map[array2[j]]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(containsCommonItem2(array1, array2));
